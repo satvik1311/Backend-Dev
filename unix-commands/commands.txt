@@ -1,0 +1,36 @@
+pwd — prints the current working directory
+
+mkdir unix-commands — creates a new folder named “unix-commands”
+
+cd unix-commands — moves inside the unix-commands folder
+
+touch file1.txt — creates an empty file named file1.txt
+
+ls — lists all files and folders in the current directory
+
+echo "this is first command" > file1.txt — writes text into file1.txt (overwrites content)
+
+cat file1.txt — displays the contents of file1.txt
+
+cp file1.txt backup.txt — copies file1.txt to backup.txt
+
+clear — clears the terminal
+
+cd .. — moves one folder back
+
+cd /path/folder — moves to a specific folder path
+
+rm file.txt — deletes a file
+
+rm -r foldername — deletes a folder and its contents
+
+mv oldname newname — renames or moves a file/folder
+
+nano file.txt — opens terminal text editor
+
+history — shows previously used commands
+
+overwrites file content
+
+appends (adds text to end of file)
+
