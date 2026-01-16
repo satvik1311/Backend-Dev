@@ -46,3 +46,4 @@ const server = http.createServer((req, res) => {
 server.listen(8000, () => {
   console.log("Server running on port 8000");
 });
+// use : http://localhost:8000/product?name=Laptop&price=50000&discount=10
