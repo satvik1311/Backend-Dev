@@ -15,12 +15,12 @@ const server = http.createServer((req, res) => {
 
     // 2️⃣ Log format
     const log = `
-Ticket ID: ${ticketId}
-Name: ${name}
-Issue: ${issue}
-Priority: ${priority}
-----------------------
-`;
+    Ticket ID: ${ticketId}
+    Name: ${name}
+    Issue: ${issue}
+    Priority: ${priority}
+    ------------------
+    `;
 
     // 3️⃣ File decide
     const fileName = priority === "high"
