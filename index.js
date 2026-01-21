@@ -5,7 +5,7 @@
 // aur object destructuring se add aur remove ko directly variables me store kiya jata hai.
 
 // Destructuring ka matlab hota hai
-//object ya array se values ko direct variables me nikaal lena
+// object ya array se values ko direct variables me nikaal lena
 
 /*
 1- WITHOUT destructuring (pehle ka tareeka)
@@ -16,14 +16,18 @@ const remove = math.remove;
 
 2️- WITH destructuring (short & clean)
 const { add, remove } = require("./math");
-
 */
+
+
+// =========================================================
+// Node.js ka built-in File System module
+// =========================================================
 
 // Node.js ka built-in File System module import kiya
 // fs module file create, read, write, delete karne ke kaam aata hai
+
 /*
 const fs = require("fs");
-
 
 // writeFileSync ka matlab: file ko SYNCHRONOUS tarike se write karna
 // "./text.txt" → current folder me text.txt naam ki file banayega
@@ -46,12 +50,12 @@ const asyncfile = fs.readFile("./text.txt", "utf-8", (err, data) => {
     // data → file ka content yahan milega agar read successful hota hai
     if (err) {
         console.log("Error reading file:", err);
-    }
-    else {       
+    } else {
         console.log("File content:", data);
     }
 });
 */
+
 // readFile ka matlab: file ko ASYNCHRONOUS tarike se read karna
 // Program file read karte waqt aage badh sakta hai
 // Jab file read complete hoti hai, tab callback function call hota hai     
@@ -64,9 +68,7 @@ logActivity("Server started");
 logActivity("User logged in");
 
 showLogs();
-
 */
-
 
 
 /*()
@@ -95,8 +97,8 @@ const server = http.createServer((req, res) => {
     // writeHead ka matlab:
     // client ko batana ki response sahi hai (200 OK)
     // aur hum JSON data bhej rahe hain
-    res.writeHead(200, { 
-        'Content-Type': 'application/json' 
+    res.writeHead(200, {
+        'Content-Type': 'application/json'
     });
 
     // res.end ka matlab:
@@ -114,7 +116,6 @@ const server = http.createServer((req, res) => {
 server.listen(8000, () => {
     console.log("Server is listening on port 8000");
 });
-
 */
 
 
@@ -149,8 +150,6 @@ const server = http.createServer((req, res) => {
         case "/about":
             // 200 OK response
             res.writeHead(200, { 'Content-Type': 'text/html' });
-
-            // About page ka HTML response
             res.end("<h1>About Us Page</h1>");
             break;
 
@@ -181,8 +180,6 @@ const server = http.createServer((req, res) => {
         default:
             // 404 ka matlab page nahi mila
             res.writeHead(404, { 'Content-Type': 'text/html' });
-
-            // Error page ka message
             res.end("<h1>404 Page Not Found</h1>");
             break;
     }
@@ -195,203 +192,20 @@ server.listen(8000, () => {
 });
 */
 
-/*
-const http = require("http");
-const { logActivity, showLogs } = require("./logger");
 
-const server = http.createServer((req, res) => {
-
-    // Har request pe log append hoga
-    logActivity(`Request received on ${req.url}`);
-
-    switch (req.url) {
-        case "/":
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end("<h1>Welcome to Home Page</h1>");
-            break;
-
-        case "/about":
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end("<h1>About Us Page</h1>");
-            break;
-
-        case "/contact":
-            const user = {
-                id: 1,
-                name: "Satvik",
-                contact: "7080809670"
-            };
-
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end(
-                "<h1>Contact Us</h1>" +
-                "<p>Contact: " + user.contact + "</p>"
-            );
-            break;
-
-        // 🔥 Logs dikhane ke liye special route
-        case "/logs":
-            showLogs(res);
-            break;
-
-        default:
-            res.writeHead(404, { "Content-Type": "text/html" });
-            res.end("<h1>404 Page Not Found</h1>");
-            break;
-    }
-});
-
-server.listen(8000, () => {
-    console.log("Server is listening on port 8000");
-});
-*/
-/*
-// jab bhi server pe request ayegi uska log kese generate hoga 
-const http = require("http");
-const fs = require("fs");
-
-const server = http.createServer((req, res) => {
-  const timestamp = new Date().toLocaleString();
-
-  const log = `User requested at: ${timestamp} , Request URL: ${req.url}\n`;
-
-  fs.appendFile("./activity.log", log, (err) => {
-    if (err) {
-      console.log("Fail to write log");
-    } else {
-      console.log("Log written successfully");
-    }
-  });
-  switch (req.url) {
-        case "/":
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end("<h1>Welcome to Home Page</h1>");
-            break;
-
-        case "/about":
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end("<h1>About Us Page</h1>");
-            break;
-
-        case "/contact":
-            const user = {
-                id: 1,
-                name: "Satvik",
-                contact: "7080809670"
-            };
-
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end(
-                "<h1>Contact Us</h1>" +
-                "<p>Contact: " + user.contact + "</p>"
-            );
-            break;
-            case "/alllogs":
-                fs.readFile("./activity.log", "utf-8", (err, data) => {
-                    if (err) {
-                        res.writeHead(200, { "Content-Type": "text/plain" });
-                        res.end("No logs found");
-                        return;     
-                    }
-                    else {
-                        res.writeHead(200, { "Content-Type": "text/plain" });
-                        res.end(data);
-                    }
-                });
-                break;
-        
-
-        default:
-            res.writeHead(404, { "Content-Type": "text/html" });
-            res.end("<h1>404 Page Not Found</h1>");
-            break;
-    }
-
-  
-});
-
-server.listen(3000, () => {
-  console.log("Server started on port 3000");
-});
-*/
-
-/*
-const http = require("http");
-const fs = require("fs");
-const url = require("url");
-
-const server = http.createServer((req, res) => {
-
-  const parsedUrl = url.parse(req.url, true);
-  const pathname = parsedUrl.pathname;
-  const { name, email } = parsedUrl.query;
-
-  switch (pathname) {
-
-    case "/":
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.end("<h1>Welcome to Home Page</h1>");
-      break;
-
-    case "/about":
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.end(
-        `<h1>About Us</h1>
-         <p>Hello I am ${name || "Guest"}</p>
-         <p>Email: ${email || "Not provided"}</p>`
-      );
-      break;
-
-    case "/contact":
-      const user = {
-        id: 1,
-        name: "Satvik",
-        contact: "7080809670"
-      };
-
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.end(
-        `<h1>Contact Us</h1>
-         <p>Contact: ${user.contact}</p>`
-      );
-      break;
-
-    case "/alllogs":
-      fs.readFile("./activity.log", "utf-8", (err, data) => {
-        if (err) {
-          res.writeHead(200, { "Content-Type": "text/plain" });
-          res.end("No logs found");
-        } else {
-          res.writeHead(200, { "Content-Type": "text/plain" });
-          res.end(data);
-        }
-      });
-      break;
-
-    default:
-      res.writeHead(404, { "Content-Type": "text/html" });
-      res.end("<h1>404 Page Not Found</h1>");
-  }
-});
-
-server.listen(3000, () => {
-  console.log("Server started on port 3000");
-});
-*/
-  
-
+// =========================================================
 // OS Module
+// =========================================================
+
 /*
 const os = require('os');
 
+const totalMemory = os.totalmem()/(1024*1024*1024); // bytes to GB
+const freeMemory = os.freemem()/(1024*1024*1024);   // bytes to GB
 
-const totalMemory = os.totalmem()/(1024*1024*1024); //  bytes to GB
-const freeMemory = os.freemem()/(1024*1024*1024); //bytes to GB
-
-
-const platform = os.platform(); //current operating system ka naam
-const cpus = os.cpus()[0].model; //system ke CPUs ki information
-const uptime = os.uptime()/3600; //system kitne seconds se chal raha hai
+const platform = os.platform();      // current operating system ka naam
+const cpus = os.cpus()[0].model;     // system ke CPUs ki information
+const uptime = os.uptime()/3600;     // system kitne seconds se chal raha hai
 
 console.log("Total Memory:", totalMemory);
 console.log("Free Memory:", freeMemory);
@@ -401,27 +215,18 @@ console.log("Uptime (in hours):", uptime);
 */
 
 
+// =========================================================
+// File / Directory operations
+// =========================================================
 
 const fs = require("fs");
+
 /*
 fs.copyFileSync("source.txt", "destination.txt");
 // source.txt ke content ko destination.txt me copy kar dega
 // agar destination.txt pehle se exist karta hai to overwrite kar dega
 // agar destination.txt nahi hai to nayi file bana dega
-
-fs.copyFile("source.txt", "destination_async.txt", (err) => {
-    if (err) {
-        console.log("File copy failed:", err);
-    } else {                
-        console.log("File copied successfully to async file");
-    }   
-});
 */
-// source.txt ke content ko destination_async.txt me copy kar dega
-// agar destination_async.txt pehle se exist karta hai to overwrite kar dega
-// agar destination_async.txt nahi hai to nayi file bana dega
-// ye asynchronous tareeke se kaam karega, yani program aage badh sakta hai jab tak file copy ho rahi hai
-
 
 /*
 // How to delete a file
@@ -430,13 +235,36 @@ fs.unlink("destination_async.txt", (err) => {
         console.log("File deletion failed:", err);
     } else {
         console.log("File deleted successfully");
-    }                           
+    }
 });
-// destination_async.txt file ko delete kar dega
-// agar file exist nahi karti to error dega
-// ye asynchronous tareeke se kaam karega, yani program aage badh sakta hai jab tak file delete ho rahi hai
 fs.unlinkSync("dest.txt");
-// destination.txt file ko delete kar dega
-// agar file exist nahi karti to error dega
-// ye synchronous tareeke se kaam karega, yani program tab tak aage nahi badhega jab tak file delete nahi ho jati
 */
+
+// Creating directory!
+// fs.mkdir("newDirectory", (err) => {
+//     if (err) {
+//         console.log("Directory creation failed:", err);
+//         return;
+//     }
+//     console.log("Directory created successfully");
+// });
+
+// read directory
+// fs.readdir("newDirectory", (err, files) => {
+//     if (err) {
+//         console.log("Directory read failed:", err);
+//         return;
+//     }
+//     console.log("Files in directory:", files);
+// });
+
+// remove directory
+// fs.rm("newDirectory", { recursive: true }, (err) => {
+//     if (err) {
+//         console.log("Directory deletion failed:", err);
+//         return;
+//     }
+//     console.log("Directory deleted successfully");
+// });
+
+----------------------------------------------------------------------------------------
