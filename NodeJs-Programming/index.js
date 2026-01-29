@@ -267,4 +267,3 @@ fs.unlinkSync("dest.txt");
 //     console.log("Directory deleted successfully");
 // });
 
-----------------------------------------------------------------------------------------
