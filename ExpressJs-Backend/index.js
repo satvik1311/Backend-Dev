@@ -17,26 +17,24 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-
-// ✅ Get users (with optional branch query filter)
+// ✅ Get users (optional branch filter)
 app.get('/users', (req, res) => {
-
   const branchQuery = req.query.branch;
 
-  // agar branch query aayi hai → filter karo
   if (branchQuery) {
     const filteredUsers = users.filter(
       u => u.branch.toLowerCase() === branchQuery.toLowerCase()
     );
     return res.json(filteredUsers);
   }
+  else {
+    return res.json(users);
+  }
 
-  // warna sab users bhej do
-  res.json(users);
+ 
 });
 
-
-// get user by id
+// ✅ get user by id
 app.get('/users/:id', (req, res) => {
   const userId = parseInt(req.params.id);
   const user = users.find(u => u.id === userId);
@@ -44,10 +42,24 @@ app.get('/users/:id', (req, res) => {
   if (user) {
     res.json(user);
   } else {
-    res.status(404).send('User not found');
+    res.status(404).json({ message: "User not found" });
   }
 });
 
+// ✅ search user by name
+app.get('/search', (req, res) => {
+  const nameQuery = req.query.name; 
+
+  if (!nameQuery) {
+    return res.status(400).json({ message: "Name query is required" });
+  }
+
+  const matchedUsers = users.filter(u =>
+    u.name.toLowerCase().includes(nameQuery.toLowerCase())
+  );
+
+  res.json(matchedUsers);
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
