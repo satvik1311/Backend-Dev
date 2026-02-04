@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+// --------------------------GET--------------------------------------
 // ✅ Get all users
 // agar query me ?branch=CSE aaya → sirf wahi branch ke users
 app.get('/users', (req, res) => {
@@ -66,6 +67,7 @@ app.get('/search', (req, res) => {
 
   res.json(matchedUsers);
 });
+/*-------------------POST------------------------------------------------------------------------------- */
 
 // ✅ POST request → new student add karne ke liye
 // example: /student/register
@@ -97,38 +99,64 @@ app.post('/student/register', (req, res) => {
   res.status(201).json(users);
 });
 
+/*-------------------PUT------------------------------------------------------------------------------- */
 // PUT request → existing student update karne ke liye
 app.put('/users/:id', (req, res) => {
- 
-  const userId = Number(req.body.id);
-  
-  // const indx = users.findIndex(u => u.id === userId);
-  // if(indx === -1){
-  //   return res.status(400).send("User Does Not Exist");
-  // }
-  
-  const updatedUser = users.find(u => u.id === userId);
-  if(!updatedUser){
-    return res.status(400).send("User Does Not Exist");
+
+  // ✅ ID URL se lo
+  const userId = Number(req.params.id);
+
+  // user find karo
+  const user = users.find(u => u.id === userId);
+
+  if (!user) {
+    return res.status(404).json({
+      message: "User Does Not Exist"
+    });
   }
 
-  // user data update karo spread operator se 
+  // ❗ ID update nahi hone deni (important)
+  if (req.body.id && req.body.id !== userId) {
+    return res.status(400).json({
+      message: "You cannot change user ID"
+    });
+  }
 
-  // users[userId] = { ...users[indx], ...req.body };
-  
+  // ✅ Update user
+  Object.assign(user, req.body);
 
-  // res.json(users[userId]);
-  
-   Object.assign(updatedUser, req.body);
+  console.log("Updated User:", users);
 
-   res.json(updatedUser);
-    
-  console.log("User data after update:", users);
-
+  res.json({
+    message: "User updated successfully",
+    user
+  });
 });
+// app.put('/users/:id',(req,res)=>{
+//     const id = parseInt(req.params.id);
+//     const updatedData = req.body;
+//     const stuIdx=users.findIndex((s)=>s.id === id);
+//     if(stuIdx === -1){
+//         return res.status(400).send("Student not present");
+//     }
+//     console.log(stuIdx);
+//     users[stuIdx] = {...users[stuIdx],...updatedData};
+//     res.status(200).json(users[stuIdx]);
+//     console.log("Student data after update:", users);
+// });
 
+/*-------------------DELETE------------------------------------------------------------------------------- */
 
-
+app.delete('/users/:id',(req,res)=>{
+    const id = parseInt(req.params.id);
+    const stuIdx=users.findIndex((s)=>s.id === id);
+    if(stuIdx === -1){
+        return res.status(400).send("Student not present");
+    }
+    users.splice(stuIdx,1);
+    res.status(200).json({message:"Student deleted successfully",users});
+    console.log("Student data after deletion:", users);
+});
 
 // server start
 app.listen(port, () => {
