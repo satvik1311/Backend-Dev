@@ -19,25 +19,11 @@
   },
   {
     "id": 3,
-    "name": "Doe",
-    "branch": "CSE",
-    "subjects": [
-      "Art",
-      "PE"
-    ]
-  },
-  {
-    "id": 4,
     "name": "Max",
     "branch": "ME",
     "subjects": [
       "Thermo",
       "Design"
     ]
-  },
-  {
-    "id": 5,
-    "name": "lixi",
-    "branch": "CSE"
   }
 ]

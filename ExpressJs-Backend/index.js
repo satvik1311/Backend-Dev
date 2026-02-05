@@ -158,6 +158,10 @@ app.delete('/users/:id',(req,res)=>{
     console.log("Student data after deletion:", users);
 });
 
+
+
+
+
 // server start
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
