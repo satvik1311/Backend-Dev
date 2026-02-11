@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "name": "Satvik",
-    "branch": "CSE",
+    "name": "Max",
+    "branch": "ME",
     "subjects": [
       "Math",
       "Science"
@@ -25,5 +25,11 @@
       "Thermo",
       "Design"
     ]
+  },
+  {
+    "id": 4,
+    "name": "Ankit",
+    "branch": "ME",
+    "subjects": []
   }
 ]

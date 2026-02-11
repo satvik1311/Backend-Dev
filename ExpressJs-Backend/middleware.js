@@ -6,6 +6,7 @@ const PORT = 8000;
 
 app.use(express.json());
 
+
 /* -------- Middleware -------- */
 
 app.use(async (req, res, next) => {
