@@ -8,9 +8,12 @@ const PORT = 5000;
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
-// app.post("/register", (req, res) => {
 
-   
+app.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname,"public/form.html"))
+});
+
+// app.post("/register", (req, res) => {
 //     const newStudent = {
 //         name: req.body.name,
 //         password: req.body.password
@@ -36,6 +39,8 @@ app.use(express.urlencoded({ extended: true }));
 //         });
 //     });
 // });
+
+
 app.post("/register",(req,res)=>{
     const newStudent = {
         name : req.body.name,
@@ -48,7 +53,7 @@ app.post("/register",(req,res)=>{
     students = JSON.parse(data);
     }
     students.push(newStudent);
-    fs.writeFileSync("students.json",JSON.stringify(students, null, 2));
+    fs.writeFileSync("Students.json",JSON.stringify(students, null, 2));
 res.send("Student Registered");
 
 })
