@@ -54,9 +54,11 @@ app.post("/register",(req,res)=>{
     }
     students.push(newStudent);
     fs.writeFileSync("Students.json",JSON.stringify(students, null, 2));
+    // fs.appendFileSync("Students.json", JSON.stringify(newStudent) + "\n"); is tareeke se objext ke form mai append hoyega
+
 res.send("Student Registered");
 
-})
+});
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
