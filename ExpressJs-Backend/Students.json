@@ -1,19 +1,33 @@
 [
   {
-    "name": "Satvik Gaur",
-    "password": "123"
-  },
-  {
-    "name": "Ripper",
-    "password": "65165"
-  },
-  {
-    "name": "dn dfj",
-    "password": "s,khcb"
-  },
-  {
+    "id": 1,
     "name": "Satvik",
-    "password": "08527626389396241"
+    "branch": "CSE"
+  },
+  {
+    "id": 2,
+    "name": "Ripper",
+    "branch": "CIVIL"
+  },
+  {
+    "id": 3,
+    "name": "madafakaa",
+    "branch": "MECHANICAL"
+  },
+  {
+    "id": 4,
+    "name": "hickdead",
+    "branch": "CSE"
+  },
+  {
+    "id": 5,
+    "name": "Satvik",
+    "branch": "CSE"
+  },
+  [],
+  {
+    "id": null,
+    "name": "bukhabikhari",
+    "branch": "CSE"
   }
 ]
-
